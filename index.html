@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="color-scheme" content="dark light"/>
+<link rel="icon" href="data:,">
+<title>Deny Nurcahyanto — Junior Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+:root{
+  --bg:#0B0B0F; --bg2:#121218; --card:#15151D; --card2:#1A1A24;
+  --text:#F4F4F0; --muted:#9C9CA8; --muted2:#6E6E7A;
+  --lime:#BFFF3C; --lime-dim:#9BE816; --cyan:#67E8F9;
+  --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.06);
+  --radius:20px;
+}
+@media (prefers-color-scheme: light){
+  :root{ --bg:#F6F6F2; --bg2:#EEEEEB; --card:#FFFFFF; --card2:#F3F3EF; --text:#121218; --muted:#5C5C66; --muted2:#8A8A94; --line:rgba(0,0,0,.1); --line2:rgba(0,0,0,.06); }
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+a{color:inherit;text-decoration:none} button{font-family:inherit;cursor:pointer}
+::selection{background:var(--lime);color:#0B0B0F}
+.mono{font-family:'JetBrains Mono',monospace}
+.display{font-family:'Space Grotesk',sans-serif}
+
+/* cursor glow + dot — desktop (mouse) only */
+#glow{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(circle,rgba(191,255,60,.09) 0%,transparent 65%);transform:translate(-50%,-50%);left:50%;top:20%}
+#cursor{position:fixed;width:10px;height:10px;background:var(--lime);border-radius:50%;pointer-events:none;z-index:99;transform:translate(-50%,-50%);mix-blend-mode:difference}
+/* Desktop: hide the native cursor everywhere so it doesn't double with the green dot */
+@media (hover:hover) and (pointer:fine){
+  *,*::before,*::after{cursor:none!important}
+}
+/* Mobile / touch: no green cursor dot or glow at all */
+@media (hover:none),(pointer:coarse),(max-width:768px){
+  #cursor,#glow{display:none!important}
+}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px 5vw;backdrop-filter:blur(14px);background:color-mix(in srgb, var(--bg) 78%, transparent);border-bottom:1px solid var(--line2)}
+.logo{font-family:'Space Grotesk';font-weight:700;font-size:20px;letter-spacing:-.02em}.logo b{color:var(--lime)}
+.navlinks{display:flex;gap:28px;font-size:14px;color:var(--muted);font-weight:500}
+.navlinks a:hover{color:var(--text)}
+.nav-cta{background:var(--text);color:var(--bg);padding:9px 18px;border-radius:999px;font-size:13px;font-weight:600;border:none}
+@media(max-width:700px){.navlinks{display:none} nav{padding:14px 16px} .nav-cta{padding:8px 13px;font-size:12px} .logo{font-size:18px} .wrap{padding:0 18px} .hero{padding-top:82px;padding-bottom:28px} .hero p.lead{font-size:16px;margin:10px 0 16px} .socials{margin-top:14px} .stats{margin-top:18px} .stat{padding:14px 16px} .stat b{font-size:26px}}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+section{padding:96px 0}
+
+/* hero */
+.hero{padding:98px 0 36px;position:relative}
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);padding:7px 14px 7px 10px;border-radius:999px;font-size:13px;font-weight:500}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(191,255,60,.18);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(191,255,60,.25)}50%{box-shadow:0 0 0 7px rgba(191,255,60,.05)}}
+.hero h1{font-family:'Space Grotesk';font-size:clamp(36px,10.2vw,108px);line-height:.95;letter-spacing:-.03em;margin:14px 0 4px;font-weight:700;overflow-wrap:break-word;max-width:100%}
+.hero h1 .word{display:inline-block;overflow:hidden;vertical-align:bottom}
+.hero h1 .word span{display:inline-block}
+.hero h1 em{font-style:normal;color:transparent;-webkit-text-stroke:1.5px var(--text)}
+.hero h1 .lime{color:var(--lime);-webkit-text-stroke:0}
+.role-line{font-family:'JetBrains Mono';font-size:clamp(15px,2.2vw,20px);color:var(--muted);margin:8px 0 0}
+.role-line #rotator{color:var(--lime);font-weight:500}
+.hero p.lead{max-width:620px;color:var(--muted);font-size:17px;margin:12px 0 18px}
+.hero p.lead strong{color:var(--text);font-weight:600}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:var(--lime);color:#0D0F05;border:none;padding:15px 28px;border-radius:999px;font-weight:700;font-size:15px;display:inline-flex;gap:8px;align-items:center}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line);padding:15px 28px;border-radius:999px;font-weight:600;font-size:15px}
+.socials{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.soc{border:1px solid var(--line);background:var(--card);padding:9px 16px;border-radius:999px;font-size:13px;font-weight:600;display:inline-flex;gap:7px;align-items:center}
+.soc:hover{border-color:var(--lime)}
+.soc span{color:var(--muted);font-weight:400}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2);border-radius:var(--radius);overflow:hidden;margin-top:22px}
+.stat{background:var(--card);padding:18px 24px}
+.stat b{font-family:'Space Grotesk';font-size:30px;display:block;line-height:1.05}
+.stat span{font-size:13px;color:var(--muted)}
+@media(max-width:700px){.stats{grid-template-columns:1fr 1fr}}
+/* marquee */
+.marquee{border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);padding:18px 0;overflow:hidden;white-space:nowrap}
+.marquee-track{display:inline-flex;gap:0;animation:scroll 26s linear infinite}
+.marquee span{font-family:'Space Grotesk';font-weight:600;font-size:18px;padding:0 22px;color:var(--muted)}
+.marquee i{color:var(--lime);font-style:normal}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* section head */
+.kicker{font-family:'JetBrains Mono';font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--lime-dim);display:flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:28px;height:1px;background:var(--lime)}
+h2{font-family:'Space Grotesk';font-size:clamp(32px,5vw,48px);letter-spacing:-.03em;line-height:1.05;margin:14px 0 12px}
+.sub{color:var(--muted);max-width:560px;font-size:16px}
+
+/* about / code — raised slightly so it sits closer to the hero */
+#about{padding-top:64px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr}}
+.codewin{background:#0E0E13;border:1px solid rgba(255,255,255,.1);border-radius:16px;overflow:hidden;color:#E8E8E2;font-size:13.5px}
+.codewin-head{display:flex;gap:7px;padding:13px 16px;border-bottom:1px solid rgba(255,255,255,.08);align-items:center}
+.codewin-head i{width:11px;height:11px;border-radius:50%;display:block}
+.codewin pre{margin:0;padding:20px;overflow-x:auto;font-family:'JetBrains Mono';line-height:1.75}
+.tok-k{color:#C792EA}.tok-s{color:#BFFF3C}.tok-f{color:#67E8F9}.tok-c{color:#6E6E7A}.tok-p{color:#FFCB6B}
+.about-copy p{color:var(--muted)} .about-copy p strong{color:var(--text)}
+.checklist{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:12px}
+.checklist li{display:flex;gap:12px;font-size:15px}
+.checklist li::before{content:"✓";width:24px;height:24px;flex:none;background:rgba(191,255,60,.14);color:var(--lime-dim);border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700}
+
+/* skills */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+@media(max-width:860px){.skills-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.skills-grid{grid-template-columns:1fr}}
+.skill{background:var(--card);border:1px solid var(--line2);border-radius:16px;padding:22px;position:relative;overflow:hidden}
+.skill:hover{border-color:rgba(191,255,60,.4)}
+.skill .ic{width:44px;height:44px;border-radius:12px;background:var(--card2);display:grid;place-items:center;font-size:20px;margin-bottom:14px}
+.skill h3{margin:0 0 4px;font-size:16px;font-family:'Space Grotesk'}
+.skill p{margin:0;color:var(--muted);font-size:13.5px}
+.bar{height:6px;background:var(--line2);border-radius:99px;margin-top:16px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--lime);border-radius:99px;width:0}
+.skill .pct{position:absolute;top:20px;right:20px;font-family:'JetBrains Mono';font-size:12px;color:var(--muted)}
+
+/* projects */
+.proj{display:grid;grid-template-columns:1.05fr 1fr;gap:0;background:var(--card);border:1px solid var(--line2);border-radius:24px;overflow:hidden;margin-top:28px;will-change:transform}
+@media(max-width:860px){.proj{grid-template-columns:1fr}}
+.proj-visual{min-height:300px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.pv-1{background:linear-gradient(145deg,#17251A,#0E1A10)} .pv-2{background:linear-gradient(145deg,#2A1215,#180B0D)} .pv-3{background:linear-gradient(145deg,#12242B,#0B161B)}
+.pv-tag{align-self:flex-start;background:rgba(0,0,0,.35);backdrop-filter:blur(6px);color:#fff;border:1px solid rgba(255,255,255,.18);padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600}
+.pv-mock{background:rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:16px;color:#EDEDE6;font-family:'JetBrains Mono';font-size:12px;line-height:1.9}
+.pv-mock b{color:var(--lime)} .pv-mock .r{color:#FF7A7A} .pv-mock .c{color:var(--cyan)}
+.mini-office{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mini-office div{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 8px;text-align:center;font-size:18px}
+.mini-office div small{display:block;font-family:Inter;font-size:10px;color:rgba(255,255,255,.65);margin-top:4px}
+.proj-body{padding:34px}
+.proj-body h3{font-family:'Space Grotesk';font-size:26px;margin:0 0 6px;letter-spacing:-.02em}
+.proj-body .type{font-family:'JetBrains Mono';font-size:12px;color:var(--lime-dim);text-transform:uppercase;letter-spacing:.1em}
+.proj-body p{color:var(--muted);font-size:15px}
+.feat{list-style:none;padding:0;margin:16px 0;display:grid;gap:8px;font-size:14px}
+.feat li::before{content:"→ ";color:var(--lime-dim);font-weight:700}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.tag{font-size:12px;font-weight:600;border:1px solid var(--line);padding:6px 11px;border-radius:999px;color:var(--muted)}
+
+/* stack strip */
+.stack{display:flex;gap:10px;flex-wrap:wrap;margin-top:32px}
+.chip{background:var(--card);border:1px solid var(--line2);padding:12px 18px;border-radius:14px;font-weight:600;font-size:14px;display:flex;gap:9px;align-items:center}
+.chip small{color:var(--muted);font-weight:400}
+
+/* cta */
+.cta{background:var(--card);border:1px solid var(--line2);border-radius:28px;padding:56px 36px;text-align:center;position:relative;overflow:hidden}
+.cta h2{font-size:clamp(34px,6vw,58px)}
+.cta p{color:var(--muted);max-width:480px;margin:0 auto 28px}
+footer{padding:36px 0 44px;border-top:1px solid var(--line2);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+.reveal{opacity:0;transform:translateY(28px)}
+@media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none}.marquee-track{animation:none}}
+</style>
+</head>
+<body>
+<div id="glow"></div><div id="cursor"></div>
+
+<nav>
+  <a class="logo" href="#top">deny<b>.</b>dev</a>
+  <div class="navlinks">
+    <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#stack">Stack</a><a href="#contact">Contact</a>
+  </div>
+  <a href="#contact"><button class="nav-cta magnetic">Let's Talk →</button></a>
+</nav>
+
+<main id="top" class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <span class="badge"><span class="dot"></span> Available for work · Indonesia (WIB)</span>
+    <h1 id="split-title">DENY<br><em>NURCAH</em><span class="lime">YANTO</span></h1>
+    <div class="role-line">&gt; Junior Developer — <span id="rotator">React Developer</span><span style="color:var(--lime)">_</span></div>
+    <p class="lead">I build interfaces that <strong>move, respond, and feel alive</strong> — with React, GSAP animations, and React Bits–style components. Still early in my career, already shipping real projects: a live AI office dashboard, a daily content automation pipeline, and campaign media used in the real world.</p>
+    <div class="btns">
+      <a href="#projects"><button class="btn-primary magnetic">View My Projects ↓</button></a>
+      <a href="#about"><button class="btn-ghost magnetic">About Me</button></a>
+    </div>
+    <div class="socials">
+      <a class="soc" href="https://instagram.com/denyy.xt" target="_blank" rel="noopener">Instagram <span>@denyy.xt</span></a>
+      <a class="soc" href="https://youtube.com/@DenyNurcahyanto" target="_blank" rel="noopener">YouTube <span>@DenyNurcahyanto</span></a>
+      <a class="soc" href="https://github.com/denynurcahyanto1" target="_blank" rel="noopener">GitHub <span>@denynurcahyanto1</span></a>
+      <a class="soc" href="#">LinkedIn <span>↗</span></a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b><span class="count" data-to="3">0</span></b><span>Real projects shipped</span></div>
+      <div class="stat"><b><span class="count" data-to="7">0</span>+</b><span>Core technologies</span></div>
+      <div class="stat"><b><span class="count" data-to="2">0</span></b><span>Platforms published to daily</span></div>
+      <div class="stat"><b>100%</b><span>Built &amp; run by me, end to end</span></div>
+    </div>
+  </header>
+</main>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
+
+<main class="wrap">
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="kicker">01 — About</div>
+    <h2 class="reveal">A junior developer who<br>learns by shipping.</h2>
+    <div class="about-grid" style="margin-top:32px">
+      <div class="about-copy reveal">
+        <p>Hi, I'm <strong>Deny Nurcahyanto</strong> — a junior developer focused on front-end development with <strong>React and JavaScript</strong>. I care about the details most portfolios skip: motion, feedback, and interfaces that explain themselves.</p>
+        <p>My projects aren't tutorial clones. I built a <strong>live dashboard</strong> that visualizes an AI router as an isometric office, an <strong>automation pipeline</strong> that publishes videos every day, and <strong>design work</strong> for a real village election campaign in Plesungan, Karanganyar.</p>
+        <p>Right now I'm deepening my React fundamentals, animation with GSAP, and design basics in Figma — so I can go from idea → design → working product on my own.</p>
+        <ul class="checklist">
+          <li>Comfortable building component-based UIs in React</li>
+          <li>Animation-first mindset: GSAP + interactive components</li>
+          <li>Happy working solo or alongside a senior dev / mentor</li>
+          <li>Based in Indonesia, open to remote opportunities</li>
+        </ul>
+      </div>
+      <div class="codewin reveal" aria-label="Developer profile as a React component">
+        <div class="codewin-head"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i><span class="mono" style="margin-left:8px;color:#9C9CA8;font-size:12px">Developer.jsx</span></div>
+<pre><span class="tok-k">const</span> <span class="tok-f">developer</span> = {
+  name: <span class="tok-s">'Deny Nurcahyanto'</span>,
+  role: <span class="tok-s">'Junior Developer'</span>,
+  stack: [<span class="tok-s">'React'</span>, <span class="tok-s">'JavaScript'</span>,
+          <span class="tok-s">'TypeScript'</span>, <span class="tok-s">'Node.js'</span>],
+  animation: [<span class="tok-s">'GSAP'</span>, <span class="tok-s">'React Bits'</span>],
+  design: <span class="tok-s">'Figma (basics)'</span>,
+  currentlyLearning: <span class="tok-s">'Advanced React patterns'</span>,
+  openToWork: <span class="tok-p">true</span>,
+};
+
+<span class="tok-c">// hireable if coffee is provided ☕</span>
+<span class="tok-k">export default</span> developer;</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" style="padding-top:24px">
+    <div class="kicker">02 — Skills</div>
+    <h2 class="reveal">What I work with</h2>
+    <p class="sub reveal">Honest levels for a junior profile — strong where I've shipped real work, growing where I'm actively learning.</p>
+    <div class="skills-grid" id="skillsGrid"></div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" style="padding-top:24px">
+    <div class="kicker">03 — Projects</div>
+    <h2 class="reveal">Selected work</h2>
+    <p class="sub reveal">Three real projects — a live product, an automation system, and design work with a real-world audience.</p>
+    <div id="projectList"></div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack" style="padding-top:24px">
+    <div class="kicker">04 — Daily Stack</div>
+    <h2 class="reveal">Tools in my workflow</h2>
+    <div class="stack reveal">
+      <div class="chip">⚛️ React <small>UI library</small></div>
+      <div class="chip">🟨 JavaScript / TypeScript <small>language</small></div>
+      <div class="chip">🎨 HTML &amp; CSS <small>layout &amp; styling</small></div>
+      <div class="chip">🟢 Node.js <small>tooling &amp; bridges</small></div>
+      <div class="chip">✨ GSAP <small>animation</small></div>
+      <div class="chip">🧩 React Bits <small>animated components</small></div>
+      <div class="chip">🔀 Git &amp; GitHub <small>version control</small></div>
+      <div class="chip">🖌️ Figma <small>UI design basics</small></div>
+      <div class="chip">💻 VS Code <small>editor</small></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="padding-top:24px">
+    <div class="cta reveal">
+      <div class="kicker" style="justify-content:center">05 — Contact</div>
+      <h2>Let's build something<br>that moves people.</h2>
+      <p>Looking for a junior developer role, freelance project, or just want to talk React and animation? My inbox on social media is open.</p>
+      <div class="btns" style="justify-content:center">
+        <a href="https://instagram.com/denyy.xt" target="_blank" rel="noopener"><button class="btn-primary magnetic">DM on Instagram ↗</button></a>
+        <a href="https://youtube.com/@DenyNurcahyanto" target="_blank" rel="noopener"><button class="btn-ghost magnetic">Watch on YouTube ↗</button></a>
+        <button class="btn-ghost magnetic" id="copyBtn">Copy: @denyy.xt</button>
+      </div>
+      <p id="copyMsg" class="mono" style="margin:18px auto 0;font-size:13px;color:var(--lime-dim);min-height:20px"></p>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Deny Nurcahyanto — Junior Developer</span>
+    <span class="mono">Built with React-style components · GSAP · React Bits spirit</span>
+    <span><a href="https://instagram.com/denyy.xt" target="_blank" rel="noopener">Instagram</a> · <a href="https://youtube.com/@DenyNurcahyanto" target="_blank" rel="noopener">YouTube</a> · <a href="https://github.com/denynurcahyanto1" target="_blank" rel="noopener">GitHub</a> · <a href="#">LinkedIn</a></span>
+  </footer>
+</main>
+
+<script>
+// ---------- Data ----------
+var skills = [
+  {icon:'⚛️', name:'React', desc:'Components, props, state, hooks — my main UI library.', pct:78},
+  {icon:'🟨', name:'JavaScript / TypeScript', desc:'Modern ES6+, DOM work, async & API integration.', pct:80},
+  {icon:'🎨', name:'HTML & CSS', desc:'Semantic markup, Flexbox/Grid, responsive design.', pct:88},
+  {icon:'🟢', name:'Node.js', desc:'Small servers, bridges, scripts & automation tooling.', pct:65},
+  {icon:'✨', name:'GSAP', desc:'ScrollTrigger reveals, timelines, SplitText-style hero motion.', pct:70},
+  {icon:'🔀', name:'Git & GitHub', desc:'Commits, branches, and shipping code in the open.', pct:72},
+  {icon:'🖌️', name:'Figma — Basics', desc:'Reading designs, simple UI screens, handoff to code.', pct:55},
+  {icon:'🧩', name:'React Bits', desc:'Animated, interactive components: tilt, magnet, spotlight.', pct:68},
+  {icon:'📱', name:'Responsive Design', desc:'Mobile-first layouts that hold up on any screen.', pct:82}
+];
+var projects = [
+  {
+    cls:'pv-1', tag:'🟢 Live Product · Dashboard', type:'React · Node.js · Real-time Data',
+    title:'Kantor AI 9Router',
+    desc:'A live, isometric AI-office dashboard that visualizes a local LLM router. Every provider and model becomes a character in a 3D office — walking the corridor, chatting in speech bubbles, and reacting in real time when requests come in.',
+    feats:['One character per AI model, grouped by provider division','Small Node.js bridge streams real request logs into the office','Live activity feed, status states & night-shift mode'],
+    tags:['React','Node.js','Real-time','Data Viz','Isometric UI'],
+    mock:'office'
+  },
+  {
+    cls:'pv-2', tag:'🔴 Automation · Content Pipeline', type:'Automation · AI Narration · Publishing',
+    title:'YouTube Shorts Automation',
+    desc:'An automated daily pipeline that produces and publishes English "Did You Know" Shorts for my channel @DenyNurcahyanto — from topic research and fact-checking, to AI narration, big on-screen captions, and scheduled publishing.',
+    feats:['Research-first workflow with keyword validation for a US audience','AI narration normalized to a consistent loudness standard','Publishes to both YouTube Shorts and TikTok, twice a day'],
+    tags:['Automation','AI Voice','Video Pipeline','YouTube','TikTok'],
+    mock:'pipeline'
+  },
+  {
+    cls:'pv-3', tag:'🎨 Design · Real-World Campaign', type:'Graphic Design · Video · Branding',
+    title:'Village Campaign Media',
+    desc:'Poster and campaign video design for a village head (Kepala Desa) election in Plesungan, Gondangrejo, Karanganyar. Designed around the slogan "Melayani dengan Hati, Membangun Plesungan Lebih Maju" — serving with heart, building a better Plesungan.',
+    feats:['Final poster design: green village-gate concept with handshake motif','~30-second campaign video with narration and village scenes','Design iterated directly with the candidate and family feedback'],
+    tags:['Poster Design','Video Editing','Branding','Figma'],
+    mock:'campaign'
+  }
+];
+
+// ---------- Render: marquee ----------
+(function(){
+  var items = ['React','GSAP','JavaScript','TypeScript','React Bits','Node.js','HTML / CSS','Git & GitHub','Figma'];
+  var html = items.map(function(i){return '<span>'+i+'</span><i>✦</i>';}).join('');
+  document.getElementById('marquee').innerHTML = html + html;
+})();
+
+// ---------- Render: skills ----------
+document.getElementById('skillsGrid').innerHTML = skills.map(function(s){
+  return '<article class="skill reveal"><span class="pct">'+s.pct+'%</span><div class="ic">'+s.icon+'</div><h3>'+s.name+'</h3><p>'+s.desc+'</p><div class="bar"><i data-w="'+s.pct+'"></i></div></article>';
+}).join('');
+
+// ---------- Render: projects ----------
+function mockHTML(kind){
+  if(kind==='office') return '<div class="mini-office"><div>🤖<small>Kiro</small></div><div>🤖<small>Gemini</small></div><div>🤖<small>Codex</small></div><div>🤖<small>Muse</small></div><div>🤖<small>Qoder</small></div><div>🤖<small>NVIDIA</small></div><div>🤖<small>OpenRouter</small></div><div>🎉<small>Request done</small></div></div>';
+  if(kind==='pipeline') return '<div class="pv-mock"><b>09:00</b> Research topic → fact-check<br><b>09:10</b> Script + AI narration <span class="c">(-14 LUFS)</span><br><b>09:20</b> Render 720×1280 · captions ON<br><b>09:30</b> Publish → <span class="r">YouTube</span> + <span class="c">TikTok</span> ✓</div>';
+  return '<div class="pv-mock">🖼️ <b>Poster</b> — "Melayani dengan Hati,<br>&nbsp;&nbsp;&nbsp;Membangun Plesungan Lebih Maju"<br>🎬 <b>Video</b> — 30s campaign spot<br>📍 Plesungan · Gondangrejo · Karanganyar</div>';
+}
+document.getElementById('projectList').innerHTML = projects.map(function(p){
+  return '<article class="proj tilt reveal"><div class="proj-visual '+p.cls+'"><span class="pv-tag">'+p.tag+'</span>'+mockHTML(p.mock)+'</div>'+
+  '<div class="proj-body"><span class="type">'+p.type+'</span><h3>'+p.title+'</h3><p>'+p.desc+'</p><ul class="feat">'+
+  p.feats.map(function(f){return '<li>'+f+'</li>';}).join('')+'</ul><div class="tags">'+
+  p.tags.map(function(t){return '<span class="tag">'+t+'</span>';}).join('')+'</div></div></article>';
+}).join('');
+
+// ---------- Copy handle ----------
+document.getElementById('copyBtn').addEventListener('click', function(){
+  var msg = document.getElementById('copyMsg');
+  function done(){ msg.textContent = '✓ Copied — find me on Instagram as @denyy.xt'; }
+  if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText('@denyy.xt').then(done).catch(done); } else { done(); }
+});
+
+// ---------- Rotating role (React Bits-style text swap) ----------
+(function(){
+  var words = ['React Developer','GSAP Animator','UI Builder','Automation Tinkerer','Open to Work'];
+  var el = document.getElementById('rotator'), i = 0;
+  setInterval(function(){
+    if(window.gsap){ gsap.to(el,{y:-8,opacity:0,duration:.25,onComplete:function(){ i=(i+1)%words.length; el.textContent=words[i]; gsap.fromTo(el,{y:8,opacity:0},{y:0,opacity:1,duration:.3}); }}); }
+    else { i=(i+1)%words.length; el.textContent=words[i]; }
+  }, 2600);
+})();
+
+// ---------- Cursor glow + dot (desktop mouse only) ----------
+(function(){
+  var glow=document.getElementById('glow'), cur=document.getElementById('cursor');
+  if(!window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+    if(glow) glow.style.display='none';
+    if(cur) cur.style.display='none';
+    return;
+  }
+  document.addEventListener('mousemove', function(e){
+    glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px';
+    cur.style.left=e.clientX+'px'; cur.style.top=e.clientY+'px';
+  });
+})();
+
+// ---------- Tilt cards (React Bits Tilt) ----------
+document.querySelectorAll('.tilt').forEach(function(card){
+  card.addEventListener('mousemove', function(e){
+    var r=card.getBoundingClientRect();
+    var x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform='perspective(1100px) rotateY('+(x*3)+'deg) rotateX('+(-y*3)+'deg)';
+  });
+  card.addEventListener('mouseleave', function(){ card.style.transform='perspective(1100px)'; card.style.transition='transform .5s ease'; setTimeout(function(){card.style.transition='';},500); });
+});
+
+// ---------- Magnetic buttons (React Bits Magnet) ----------
+document.querySelectorAll('.magnetic').forEach(function(btn){
+  btn.addEventListener('mousemove', function(e){
+    var r=btn.getBoundingClientRect();
+    btn.style.transform='translate('+((e.clientX-r.left-r.width/2)*.18)+'px,'+((e.clientY-r.top-r.height/2)*.28)+'px)';
+  });
+  btn.addEventListener('mouseleave', function(){ btn.style.transform=''; });
+});
+
+// ---------- GSAP animations ----------
+if(window.gsap){
+  gsap.registerPlugin(ScrollTrigger);
+  // Hero title: split into chars, stagger up
+  var h1=document.getElementById('split-title');
+  // Simple word-level reveal for reliability with <br>/<em>
+  gsap.from('.hero .badge',{y:16,opacity:0,duration:.6,ease:'power3.out'});
+  gsap.from('#split-title',{y:60,opacity:0,duration:1,ease:'power4.out',delay:.1});
+  gsap.from('.role-line, .hero .lead, .hero .btns, .hero .socials',{y:24,opacity:0,duration:.7,stagger:.1,ease:'power3.out',delay:.35,clearProps:'all'});
+  gsap.from('.stat',{y:20,opacity:0,stagger:.08,duration:.6,delay:.7,clearProps:'all'});
+
+  // Counters
+  document.querySelectorAll('.count').forEach(function(el){
+    var to=+el.getAttribute('data-to'), obj={v:0};
+    gsap.to(obj,{v:to,duration:1.4,delay:.8,ease:'power2.out',onUpdate:function(){ el.textContent=Math.round(obj.v); }});
+  });
+
+  // Scroll reveals
+  gsap.utils.toArray('.reveal').forEach(function(el){
+    gsap.to(el,{opacity:1,y:0,duration:.8,ease:'power3.out',
+      scrollTrigger:{trigger:el,start:'top 88%'}});
+  });
+  // Skill bars
+  document.querySelectorAll('.bar i').forEach(function(bar){
+    gsap.to(bar,{width:bar.getAttribute('data-w')+'%',duration:1.1,ease:'power3.out',
+      scrollTrigger:{trigger:bar,start:'top 92%'}});
+  });
+} else {
+  document.querySelectorAll('.reveal').forEach(function(el){ el.style.opacity=1; el.style.transform='none'; });
+  document.querySelectorAll('.bar i').forEach(function(b){ b.style.width=b.getAttribute('data-w')+'%'; });
+  document.querySelectorAll('.count').forEach(function(el){ el.textContent=el.getAttribute('data-to'); });
+}
+</script>
+</body>
+</html>
