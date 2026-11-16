@@ -48,12 +48,19 @@ function MagneticButton({ className = '', children, href, variant = 'primary' })
 
   const classes = `magnetic ${variant === 'primary' ? 'btn-primary' : 'btn-ghost'} ${className}`.trim();
 
+  // Never nest a button inside an anchor: keyboard Enter would fire both controls.
   if (href) {
+    const isExternal = href.startsWith('http');
     return (
-      <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noreferrer noopener' : undefined}>
-        <button type="button" className={classes} onMouseMove={handleMove} onMouseLeave={handleLeave}>
-          {children}
-        </button>
+      <a
+        href={href}
+        className={classes}
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noreferrer noopener' : undefined}
+        onMouseMove={handleMove}
+        onMouseLeave={handleLeave}
+      >
+        {children}
       </a>
     );
   }
@@ -73,11 +80,26 @@ export default function App() {
   const mobileMenuButtonRef = useRef(null);
 
   const handleCopy = async () => {
+    const handle = '@denyy.xt';
     try {
-      await navigator.clipboard.writeText('@denyy.xt');
-      setCopyMessage('✓ Copied — find me on Instagram as @denyy.xt');
+      await navigator.clipboard.writeText(handle);
+      setCopyMessage(`✓ Copied: find me on Instagram as ${handle}`);
     } catch {
-      setCopyMessage('✓ Copied — find me on Instagram as @denyy.xt');
+      // Clipboard API needs a secure context; fall back, then report the real outcome.
+      let copied = false;
+      try {
+        const scratch = document.createElement('textarea');
+        scratch.value = handle;
+        scratch.style.position = 'fixed';
+        scratch.style.opacity = '0';
+        document.body.appendChild(scratch);
+        scratch.select();
+        copied = document.execCommand('copy');
+        scratch.remove();
+      } catch {
+        copied = false;
+      }
+      setCopyMessage(copied ? `✓ Copied: find me on Instagram as ${handle}` : `✗ Copy failed, my handle is ${handle}`);
     }
   };
 
@@ -249,11 +271,11 @@ export default function App() {
             <span className="lime">YANTO</span>
           </h1>
           <div className="role-line">
-            &gt; Junior Developer — <span id="rotator">{roles[roleIndex]}</span>
+            &gt; Junior Developer · <span id="rotator">{roles[roleIndex]}</span>
             <span style={{ color: 'var(--lime)' }}>_</span>
           </div>
           <p className="lead">
-            I build interfaces that <strong>move, respond, and feel alive</strong> — with React, GSAP animations, and React Bits–style components. Still early in my career, already shipping real projects: a live AI office dashboard, a daily content automation pipeline, and campaign media used in the real world.
+            I build interfaces that <strong>move, respond, and feel alive</strong>, with React, GSAP animations, and React Bits-style components. Still early in my career, already shipping real projects: a live AI office dashboard, a daily content automation pipeline, and campaign media used in the real world.
           </p>
           <div className="btns">
             <MagneticButton href="#projects">View My Projects ↓</MagneticButton>
@@ -268,9 +290,6 @@ export default function App() {
             </a>
             <a className="soc" href="https://github.com/denynurcahyanto1" target="_blank" rel="noreferrer noopener">
               GitHub <span>@denynurcahyanto1</span>
-            </a>
-            <a className="soc" href="#">
-              LinkedIn <span>↗</span>
             </a>
           </div>
           <div className="stats">
@@ -312,22 +331,22 @@ export default function App() {
         </div>
       </div>
 
-      <main className="wrap">
+      <div className="wrap">
         <section id="about">
           <SectionHeader
-            kicker="01 — About"
+            kicker="01 · About"
             title="A junior developer who learns by shipping."
           />
           <div className="about-grid" style={{ marginTop: '32px' }}>
             <div className="about-copy reveal">
               <p>
-                Hi, I&apos;m <strong>Deny Nurcahyanto</strong> — a junior developer focused on front-end development with <strong>React and JavaScript</strong>. I care about the details most portfolios skip: motion, feedback, and interfaces that explain themselves.
+                Hi, I&apos;m <strong>Deny Nurcahyanto</strong>, a junior developer focused on front-end development with <strong>React and JavaScript</strong>. I care about the details most portfolios skip: motion, feedback, and interfaces that explain themselves.
               </p>
               <p>
                 My projects aren&apos;t tutorial clones. I built a <strong>live dashboard</strong> that visualizes an AI router as an isometric office, an <strong>automation pipeline</strong> that publishes videos every day, and <strong>design work</strong> for a real village election campaign in Plesungan, Karanganyar.
               </p>
               <p>
-                Right now I&apos;m deepening my React fundamentals, animation with GSAP, and design basics in Figma — so I can go from idea → design → working product on my own.
+                Right now I&apos;m deepening my React fundamentals, animation with GSAP, and design basics in Figma, so I can go from idea → design → working product on my own.
               </p>
               <ul className="checklist">
                 <li>Comfortable building component-based UIs in React</li>
@@ -363,9 +382,9 @@ export default developer;`}
 
         <section id="skills" style={{ paddingTop: '24px' }}>
           <SectionHeader
-            kicker="02 — Skills"
+            kicker="02 · Skills"
             title="What I work with"
-            subtitle="Honest levels for a junior profile — strong where I've shipped real work, growing where I'm actively learning."
+            subtitle="Honest levels for a junior profile, strong where I've shipped real work, growing where I'm actively learning."
           />
           <div className="skills-grid">
             {skills.map((skill) => (
@@ -376,9 +395,9 @@ export default developer;`}
 
         <section id="projects" style={{ paddingTop: '24px' }}>
           <SectionHeader
-            kicker="03 — Projects"
+            kicker="03 · Projects"
             title="Selected work"
-            subtitle="Three real projects — a live product, an automation system, and design work with a real-world audience."
+            subtitle="Three real projects: a live product, an automation system, and design work with a real-world audience."
           />
           <div id="projectList">
             {projects.map((project) => (
@@ -388,7 +407,7 @@ export default developer;`}
         </section>
 
         <section id="stack" style={{ paddingTop: '24px' }}>
-          <SectionHeader kicker="04 — Daily Stack" title="Tools in my workflow" />
+          <SectionHeader kicker="04 · Daily Stack" title="Tools in my workflow" />
           <div className="stack reveal">
             {workflowTools.map((tool) => (
               <div className="chip" key={tool.name}>
@@ -401,7 +420,7 @@ export default developer;`}
 
         <section id="contact" style={{ paddingTop: '24px' }}>
           <div className="cta reveal">
-            <div className="kicker" style={{ justifyContent: 'center' }}>05 — Contact</div>
+            <div className="kicker" style={{ justifyContent: 'center' }}>05 · Contact</div>
             <h2>Let&apos;s build something that moves people.</h2>
             <p>
               Looking for a junior developer role, freelance project, or just want to talk React and animation? My inbox on social media is open.
@@ -413,20 +432,20 @@ export default developer;`}
                 Copy: @denyy.xt
               </button>
             </div>
-            <p id="copyMsg" className="mono" style={{ margin: '18px auto 0', fontSize: '13px', color: 'var(--lime-dim)', minHeight: '20px' }}>
+            <p id="copyMsg" aria-live="polite" className="mono" style={{ margin: '18px auto 0', fontSize: '13px', color: 'var(--lime-dim)', minHeight: '20px' }}>
               {copyMessage}
             </p>
           </div>
         </section>
 
         <footer>
-          <span>© 2026 Deny Nurcahyanto — Junior Developer</span>
+          <span>© 2026 Deny Nurcahyanto · Junior Developer</span>
           <span className="mono">Built with React, GSAP, and React Bits spirit</span>
           <span>
-            <a href="https://instagram.com/denyy.xt" target="_blank" rel="noreferrer noopener">Instagram</a> · <a href="https://youtube.com/@DenyNurcahyanto" target="_blank" rel="noreferrer noopener">YouTube</a> · <a href="https://github.com/denynurcahyanto1" target="_blank" rel="noreferrer noopener">GitHub</a> · <a href="#">LinkedIn</a>
+            <a href="https://instagram.com/denyy.xt" target="_blank" rel="noreferrer noopener">Instagram</a> · <a href="https://youtube.com/@DenyNurcahyanto" target="_blank" rel="noreferrer noopener">YouTube</a> · <a href="https://github.com/denynurcahyanto1" target="_blank" rel="noreferrer noopener">GitHub</a>
           </span>
         </footer>
-          </main>
+          </div>
         </div>
       </div>
     </>

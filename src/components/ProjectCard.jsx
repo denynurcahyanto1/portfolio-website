@@ -29,9 +29,9 @@ function renderMock(kind) {
 
   return (
     <div className="pv-mock" data-speed="0.85">
-      🖼️ <b>Poster</b> — "Melayani dengan Hati,<br />
+      🖼️ <b>Poster</b>: "Melayani dengan Hati,<br />
       &nbsp;&nbsp;&nbsp;Membangun Plesungan Lebih Maju"<br />
-      🎬 <b>Video</b> — 30s campaign spot<br />
+      🎬 <b>Video</b>: 30s campaign spot<br />
       📍 Plesungan · Gondangrejo · Karanganyar
     </div>
   );
