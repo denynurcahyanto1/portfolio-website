@@ -275,7 +275,7 @@ export default function App() {
             <span style={{ color: 'var(--lime)' }}>_</span>
           </div>
           <p className="lead">
-            I build interfaces that <strong>move, respond, and feel alive</strong>, with React, GSAP animations, and custom interactive components. Still early in my career, already shipping real projects: a live AI office dashboard, a daily content automation pipeline, and campaign media used in the real world.
+            I build interfaces that <strong>move, respond, and feel alive</strong>, with React, GSAP animations, and React Bits-style components. Still early in my career, my latest shipped project is <strong>NVA Studio</strong> — a production landing page with a procedural 3D hero, lead capture via Supabase, and WhatsApp integration.
           </p>
           <div className="btns">
             <MagneticButton href="#projects">View My Projects ↓</MagneticButton>
@@ -295,9 +295,9 @@ export default function App() {
           <div className="stats">
             <div className="stat">
               <b>
-                <span className="count" data-to="3">0</span>
+                <span className="count" data-to="1">0</span>
               </b>
-              <span>Real projects shipped</span>
+              <span>Real project shipped</span>
             </div>
             <div className="stat">
               <b>
@@ -343,7 +343,7 @@ export default function App() {
                 Hi, I&apos;m <strong>Deny Nurcahyanto</strong>, a junior developer focused on front-end development with <strong>React and JavaScript</strong>. I care about the details most portfolios skip: motion, feedback, and interfaces that explain themselves.
               </p>
               <p>
-                My projects aren&apos;t tutorial clones. I built a <strong>live dashboard</strong> that visualizes an AI router as an isometric office, an <strong>automation pipeline</strong> that publishes videos every day, and <strong>design work</strong> for a real village election campaign in Plesungan, Karanganyar.
+                My projects aren&apos;t tutorial clones. My latest live project is <strong>NVA Studio</strong>, a production landing page for a digital & creative studio in Surakarta, featuring a procedural 3D hero, Supabase-backed lead form, and full brand identity system. I also built a <strong>live dashboard</strong> that visualizes an AI router as an isometric office, an <strong>automation pipeline</strong> that publishes videos daily, and <strong>design work</strong> for a real village election campaign in Plesungan, Karanganyar.
               </p>
               <p>
                 Right now I&apos;m deepening my React fundamentals, animation with GSAP, and design basics, so I can go from idea → design → working product on my own.

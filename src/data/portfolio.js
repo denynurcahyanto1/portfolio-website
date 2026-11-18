@@ -10,6 +10,13 @@ import {
   siGithub,
 } from 'simple-icons';
 
+// Custom icon for OpenBot (simple-icons doesn't have it)
+const siOpenbot = {
+  title: 'OpenBot',
+  hex: 'BFFF3C',
+  path: 'M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M7.5 13A1.5 1.5 0 0 0 6 14.5 1.5 1.5 0 0 0 7.5 16 1.5 1.5 0 0 0 9 14.5 1.5 1.5 0 0 0 7.5 13m9 0a1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1.5 1.5 1.5 1.5 0 0 0 1.5-1.5 1.5 1.5 0 0 0-1.5-1.5',
+};
+
 export const navLinks = [
   { label: 'About', href: '#about' },
   { label: 'Skills', href: '#skills' },
@@ -26,8 +33,10 @@ export const skills = [
   { icon: siCss, name: 'CSS', desc: 'Flexbox/Grid, responsive layouts, and styling.', pct: 88 },
   { icon: siNodedotjs, name: 'Node.js', desc: 'Small servers, bridges, scripts & automation tooling.', pct: 65 },
   { icon: siGsap, name: 'GSAP', desc: 'ScrollTrigger reveals, timelines, SplitText-style hero motion.', pct: 70 },
+  { icon: siReact, name: 'React Bits', desc: 'Animated, interactive components: tilt, magnet, spotlight.', pct: 68 },
   { icon: siGit, name: 'Git', desc: 'Commits, branches, and everyday version control.', pct: 72 },
   { icon: siGithub, name: 'GitHub', desc: 'Repositories and shipping code in the open.', pct: 72 },
+  { icon: siOpenbot, name: 'OpenBot', desc: 'Agent orchestration, tool use, and workflow automation.', pct: 65 },
 ];
 
 export const projects = [
@@ -56,11 +65,13 @@ export const workflowTools = [
   { name: 'GSAP', icon: siGsap },
   { name: 'JavaScript', icon: siJavascript },
   { name: 'TypeScript', icon: siTypescript },
+  { name: 'React Bits', icon: siReact },
   { name: 'Node.js', icon: siNodedotjs },
   { name: 'HTML5', icon: siHtml5 },
   { name: 'CSS', icon: siCss },
   { name: 'Git', icon: siGit },
   { name: 'GitHub', icon: siGithub },
+  { name: 'OpenBot', icon: siOpenbot },
 ];
 
 export const stackItems = workflowTools.map(({ name }) => name);
