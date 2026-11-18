@@ -18,43 +18,42 @@ const siOpenbot = {
 };
 
 export const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Stack', href: '#stack' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Tentang', href: '#about' },
+  { label: 'Keahlian', href: '#skills' },
+  { label: 'Proyek', href: '#projects' },
+  { label: 'Teknologi', href: '#stack' },
+  { label: 'Kontak', href: '#contact' },
 ];
 
 export const skills = [
-  { icon: siReact, name: 'React', desc: 'Components, props, state, hooks: my main UI library.', pct: 78 },
-  { icon: siJavascript, name: 'JavaScript', desc: 'Modern ES6+, DOM work, and interactive UI logic.', pct: 80 },
-  { icon: siTypescript, name: 'TypeScript', desc: 'Typed props and components for safer, cleaner refactoring.', pct: 80 },
-  { icon: siHtml5, name: 'HTML5', desc: 'Semantic, accessible markup for page structure.', pct: 88 },
-  { icon: siCss, name: 'CSS', desc: 'Flexbox/Grid, responsive layouts, and styling.', pct: 88 },
-  { icon: siNodedotjs, name: 'Node.js', desc: 'Small servers, bridges, scripts & automation tooling.', pct: 65 },
-  { icon: siGsap, name: 'GSAP', desc: 'ScrollTrigger reveals, timelines, SplitText-style hero motion.', pct: 70 },
-  { icon: siReact, name: 'React Bits', desc: 'Animated, interactive components: tilt, magnet, spotlight.', pct: 68 },
-  { icon: siGit, name: 'Git', desc: 'Commits, branches, and everyday version control.', pct: 72 },
-  { icon: siGithub, name: 'GitHub', desc: 'Repositories and shipping code in the open.', pct: 72 },
-  { icon: siOpenbot, name: 'OpenBot', desc: 'Agent orchestration, tool use, and workflow automation.', pct: 65 },
+  { icon: siReact, name: 'React', desc: 'Komponen, props, state, hooks: pustaka UI utama saya.', pct: 78 },
+  { icon: siJavascript, name: 'JavaScript', desc: 'ES6+ modern, manipulasi DOM, dan logika UI interaktif.', pct: 80 },
+  { icon: siTypescript, name: 'TypeScript', desc: 'Props dan komponen bertipe untuk refactoring yang lebih aman dan bersih.', pct: 80 },
+  { icon: siHtml5, name: 'HTML5', desc: 'Markup semantik dan aksesibel untuk struktur halaman.', pct: 88 },
+  { icon: siCss, name: 'CSS', desc: 'Flexbox/Grid, tata letak responsif, dan styling.', pct: 88 },
+  { icon: siNodedotjs, name: 'Node.js', desc: 'Server kecil, bridge, skrip & alat otomatisasi.', pct: 65 },
+  { icon: siGsap, name: 'GSAP', desc: 'Animasi ScrollTrigger, timeline, dan efek teks hero.', pct: 70 },
+  { icon: siReact, name: 'React Bits', desc: 'Komponen interaktif beranimasi: tilt, magnet, spotlight.', pct: 68 },
+  { icon: siGit, name: 'Git', desc: 'Commit, branch, dan kontrol versi harian.', pct: 72 },
+  { icon: siGithub, name: 'GitHub', desc: 'Repositori dan publikasi kode secara terbuka.', pct: 72 },
+  { icon: siOpenbot, name: 'OpenBot', desc: 'Orkestrasi agen, pemanggilan tool, dan otomatisasi alur kerja.', pct: 65 },
 ];
 
 export const projects = [
   {
     cls: 'pv-4',
-    tag: '🟢 Live Site · Studio Website',
+    tag: '🟢 Situs Live · Website Studio',
     type: 'Next.js · TypeScript · React Three Fiber',
     title: 'NVA Studio',
-    desc: 'A production landing page for NVA Studio, a digital & creative studio in Surakarta. A procedural 3D hero carries the brand, and every section below it is built to turn a visitor into a WhatsApp conversation.',
+    desc: 'Landing page produksi untuk NVA Studio, studio digital & kreatif di Surakarta. Hero 3D prosedural membawa identitas brand, dan setiap section dirancang untuk mengonversi pengunjung menjadi percakapan WhatsApp.',
     feats: [
-      'Procedural torus-knot hero in React Three Fiber: drag to rotate, no texture downloads',
-      'Lead form validated in the UI, stored in Supabase with insert-only RLS, then opens WhatsApp',
-      'Full identity set: custom favicon, 1200×630 OG image, and theme-aware social metadata',
+      'Hero torus-knot prosedural di React Three Fiber: geser untuk memutar, tanpa unduhan tekstur eksternal',
+      'Form konsultasi tervalidasi di UI, tersimpan di Supabase dengan RLS insert-only, lalu membuka WhatsApp',
+      'Set identitas lengkap: favicon kustom, gambar OG 1200×630, dan metadata sosial ramah tema',
     ],
     tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'React Three Fiber', 'Supabase'],
     links: [
-      { label: 'Live site', href: 'https://nva-studio.vercel.app' },
-      { label: 'Source', href: 'https://github.com/denynurcahyanto1/nva-studio' },
+      { label: 'Lihat Situs', href: 'https://nva-studio.vercel.app' },
     ],
     mock: 'nva',
   },
