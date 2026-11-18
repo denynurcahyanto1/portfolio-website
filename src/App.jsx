@@ -275,7 +275,7 @@ export default function App() {
             <span style={{ color: 'var(--lime)' }}>_</span>
           </div>
           <p className="lead">
-            I build interfaces that <strong>move, respond, and feel alive</strong>, with React, GSAP animations, and React Bits-style components. Still early in my career, already shipping real projects: a live AI office dashboard, a daily content automation pipeline, and campaign media used in the real world.
+            I build interfaces that <strong>move, respond, and feel alive</strong>, with React, GSAP animations, and custom interactive components. Still early in my career, already shipping real projects: a live AI office dashboard, a daily content automation pipeline, and campaign media used in the real world.
           </p>
           <div className="btns">
             <MagneticButton href="#projects">View My Projects ↓</MagneticButton>
@@ -346,7 +346,7 @@ export default function App() {
                 My projects aren&apos;t tutorial clones. I built a <strong>live dashboard</strong> that visualizes an AI router as an isometric office, an <strong>automation pipeline</strong> that publishes videos every day, and <strong>design work</strong> for a real village election campaign in Plesungan, Karanganyar.
               </p>
               <p>
-                Right now I&apos;m deepening my React fundamentals, animation with GSAP, and design basics in Figma, so I can go from idea → design → working product on my own.
+                Right now I&apos;m deepening my React fundamentals, animation with GSAP, and design basics, so I can go from idea → design → working product on my own.
               </p>
               <ul className="checklist">
                 <li>Comfortable building component-based UIs in React</li>
@@ -397,7 +397,7 @@ export default developer;`}
           <SectionHeader
             kicker="03 · Projects"
             title="Selected work"
-            subtitle="Three real projects: a live product, an automation system, and design work with a real-world audience."
+            subtitle="One live product, built end to end: the brand, the 3D hero, and the database behind the contact form."
           />
           <div id="projectList">
             {projects.map((project) => (
@@ -440,7 +440,7 @@ export default developer;`}
 
         <footer>
           <span>© 2026 Deny Nurcahyanto · Junior Developer</span>
-          <span className="mono">Built with React, GSAP, and React Bits spirit</span>
+          <span className="mono">All rights reserved</span>
           <span>
             <a href="https://instagram.com/denyy.xt" target="_blank" rel="noreferrer noopener">Instagram</a> · <a href="https://youtube.com/@DenyNurcahyanto" target="_blank" rel="noreferrer noopener">YouTube</a> · <a href="https://github.com/denynurcahyanto1" target="_blank" rel="noreferrer noopener">GitHub</a>
           </span>

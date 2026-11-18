@@ -8,7 +8,6 @@ import {
   siGsap,
   siGit,
   siGithub,
-  siFigma,
 } from 'simple-icons';
 
 export const navLinks = [
@@ -27,54 +26,28 @@ export const skills = [
   { icon: siCss, name: 'CSS', desc: 'Flexbox/Grid, responsive layouts, and styling.', pct: 88 },
   { icon: siNodedotjs, name: 'Node.js', desc: 'Small servers, bridges, scripts & automation tooling.', pct: 65 },
   { icon: siGsap, name: 'GSAP', desc: 'ScrollTrigger reveals, timelines, SplitText-style hero motion.', pct: 70 },
-  { icon: siReact, name: 'React Bits', desc: 'Animated, interactive components: tilt, magnet, spotlight.', pct: 68 },
   { icon: siGit, name: 'Git', desc: 'Commits, branches, and everyday version control.', pct: 72 },
   { icon: siGithub, name: 'GitHub', desc: 'Repositories and shipping code in the open.', pct: 72 },
-  { icon: siFigma, name: 'Figma', desc: 'Basics: reading designs, simple UI screens, handoff to code.', pct: 55 },
 ];
 
 export const projects = [
   {
-    cls: 'pv-1',
-    tag: '🟢 Live Product · Dashboard',
-    type: 'React · Node.js · Real-time Data',
-    title: 'Kantor AI 9Router',
-    desc: 'A live, isometric AI-office dashboard that visualizes a local LLM router. Every provider and model becomes a character in a 3D office, walking the corridor, chatting in speech bubbles, and reacting in real time when requests come in.',
+    cls: 'pv-4',
+    tag: '🟢 Live Site · Studio Website',
+    type: 'Next.js · TypeScript · React Three Fiber',
+    title: 'NVA Studio',
+    desc: 'A production landing page for NVA Studio, a digital & creative studio in Surakarta. A procedural 3D hero carries the brand, and every section below it is built to turn a visitor into a WhatsApp conversation.',
     feats: [
-      'One character per AI model, grouped by provider division',
-      'Small Node.js bridge streams real request logs into the office',
-      'Live activity feed, status states & night-shift mode',
+      'Procedural torus-knot hero in React Three Fiber: drag to rotate, no texture downloads',
+      'Lead form validated in the UI, stored in Supabase with insert-only RLS, then opens WhatsApp',
+      'Full identity set: custom favicon, 1200×630 OG image, and theme-aware social metadata',
     ],
-    tags: ['React', 'Node.js', 'Real-time', 'Data Viz', 'Isometric UI'],
-    mock: 'office',
-  },
-  {
-    cls: 'pv-2',
-    tag: '🔴 Automation · Content Pipeline',
-    type: 'Automation · AI Narration · Publishing',
-    title: 'YouTube Shorts Automation',
-    desc: 'An automated daily pipeline that produces and publishes English "Did You Know" Shorts for my channel @DenyNurcahyanto, from topic research and fact-checking, to AI narration, big on-screen captions, and scheduled publishing.',
-    feats: [
-      'Research-first workflow with keyword validation for a US audience',
-      'AI narration normalized to a consistent loudness standard',
-      'Publishes to both YouTube Shorts and TikTok, twice a day',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'React Three Fiber', 'Supabase'],
+    links: [
+      { label: 'Live site', href: 'https://nva-studio.vercel.app' },
+      { label: 'Source', href: 'https://github.com/denynurcahyanto1/nva-studio' },
     ],
-    tags: ['Automation', 'AI Voice', 'Video Pipeline', 'YouTube', 'TikTok'],
-    mock: 'pipeline',
-  },
-  {
-    cls: 'pv-3',
-    tag: '🎨 Design · Real-World Campaign',
-    type: 'Graphic Design · Video · Branding',
-    title: 'Village Campaign Media',
-    desc: 'Poster and campaign video design for a village head (Kepala Desa) election in Plesungan, Gondangrejo, Karanganyar. Designed around the slogan "Melayani dengan Hati, Membangun Plesungan Lebih Maju": serving with heart, building a better Plesungan.',
-    feats: [
-      'Final poster design: green village-gate concept with handshake motif',
-      '~30-second campaign video with narration and village scenes',
-      'Design iterated directly with the candidate and family feedback',
-    ],
-    tags: ['Poster Design', 'Video Editing', 'Branding', 'Figma'],
-    mock: 'campaign',
+    mock: 'nva',
   },
 ];
 
@@ -83,13 +56,11 @@ export const workflowTools = [
   { name: 'GSAP', icon: siGsap },
   { name: 'JavaScript', icon: siJavascript },
   { name: 'TypeScript', icon: siTypescript },
-  { name: 'React Bits', icon: siReact },
   { name: 'Node.js', icon: siNodedotjs },
   { name: 'HTML5', icon: siHtml5 },
   { name: 'CSS', icon: siCss },
   { name: 'Git', icon: siGit },
   { name: 'GitHub', icon: siGithub },
-  { name: 'Figma', icon: siFigma },
 ];
 
 export const stackItems = workflowTools.map(({ name }) => name);

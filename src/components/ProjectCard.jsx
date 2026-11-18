@@ -1,40 +1,18 @@
 import { useState } from 'react';
 
 function renderMock(kind) {
-  if (kind === 'office') {
-    return (
-      <div className="mini-office" data-speed="0.85">
-        <div>🤖<small>Kiro</small></div>
-        <div>🤖<small>Gemini</small></div>
-        <div>🤖<small>Codex</small></div>
-        <div>🤖<small>Muse</small></div>
-        <div>🤖<small>Qoder</small></div>
-        <div>🤖<small>NVIDIA</small></div>
-        <div>🤖<small>OpenRouter</small></div>
-        <div>🎉<small>Request done</small></div>
-      </div>
-    );
-  }
-
-  if (kind === 'pipeline') {
+  if (kind === 'nva') {
     return (
       <div className="pv-mock" data-speed="0.85">
-        <b>09:00</b> Research topic → fact-check<br />
-        <b>09:10</b> Script + AI narration <span className="c">(-14 LUFS)</span><br />
-        <b>09:20</b> Render 720×1280 · captions ON<br />
-        <b>09:30</b> Publish → <span className="r">YouTube</span> + <span className="c">TikTok</span> ✓
+        <b>01</b> Hero: torus knot · drag to rotate · no assets<br />
+        <b>02</b> Form → Supabase RLS <span className="c">insert-only</span><br />
+        <b>03</b> CTA → <span className="c">wa.me</span> handoff after save ✓<br />
+        <b>LIVE</b> nva-studio.vercel.app
       </div>
     );
   }
 
-  return (
-    <div className="pv-mock" data-speed="0.85">
-      🖼️ <b>Poster</b>: "Melayani dengan Hati,<br />
-      &nbsp;&nbsp;&nbsp;Membangun Plesungan Lebih Maju"<br />
-      🎬 <b>Video</b>: 30s campaign spot<br />
-      📍 Plesungan · Gondangrejo · Karanganyar
-    </div>
-  );
+  return null;
 }
 
 export default function ProjectCard({ project }) {
@@ -67,6 +45,15 @@ export default function ProjectCard({ project }) {
             <span className="tag" key={tag}>{tag}</span>
           ))}
         </div>
+        {project.links?.length ? (
+          <div className="proj-links">
+            {project.links.map((link) => (
+              <a key={link.href} href={link.href} target="_blank" rel="noreferrer noopener">
+                {link.label} ↗
+              </a>
+            ))}
+          </div>
+        ) : null}
       </div>
     </article>
   );
