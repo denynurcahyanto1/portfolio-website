@@ -73,7 +73,7 @@ function MagneticButton({ className = '', children, href, variant = 'primary' })
 }
 
 export default function App() {
-  const roles = ['Pengembang React', 'Animator GSAP', 'Pembangun UI', 'Peneliti Otomatisasi', 'Terbuka untuk Kerja'];
+  const roles = ['Front-End Developer', 'GSAP Animator', 'UI Builder', 'Automation Tinkerer', 'Open to Work'];
   const [roleIndex, setRoleIndex] = useState(0);
   const [copyMessage, setCopyMessage] = useState('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -83,7 +83,7 @@ export default function App() {
     const handle = '@denyy.xt';
     try {
       await navigator.clipboard.writeText(handle);
-      setCopyMessage(`✓ Tersalin: temui saya di Instagram sebagai ${handle}`);
+      setCopyMessage(`✓ Copied: find me on Instagram as ${handle}`);
     } catch {
       // Clipboard API needs a secure context; fall back, then report the real outcome.
       let copied = false;
@@ -99,7 +99,7 @@ export default function App() {
       } catch {
         copied = false;
       }
-      setCopyMessage(copied ? `✓ Tersalin: temui saya di Instagram sebagai ${handle}` : `✗ Gagal menyalin, handle saya ${handle}`);
+      setCopyMessage(copied ? `✓ Copied: find me on Instagram as ${handle}` : `✗ Copy failed, my handle is ${handle}`);
     }
   };
 
@@ -244,7 +244,7 @@ export default function App() {
         </button>
         <div className="nav-cta-desktop">
           <MagneticButton href="#contact" className="nav-cta">
-            Hubungi Saya →
+            Contact Me →
           </MagneticButton>
         </div>
         {isMobileMenuOpen && (
@@ -252,7 +252,7 @@ export default function App() {
             {navLinks.map((link) => (
               <a key={link.href} href={link.href}>{link.label}</a>
             ))}
-            <a className="mobile-nav-cta" href="#contact">Hubungi Saya →</a>
+            <a className="mobile-nav-cta" href="#contact">Contact Me →</a>
           </div>
         )}
       </nav>
@@ -262,7 +262,7 @@ export default function App() {
           <main id="top" className="wrap">
         <header className="hero">
           <span className="badge">
-            <span className="dot" /> Tersedia untuk kerja · Indonesia (WIB)
+            <span className="dot" /> Open to work · Indonesia (WIB)
           </span>
           <h1 id="split-title">
             DENY
@@ -271,15 +271,15 @@ export default function App() {
             <span className="lime">YANTO</span>
           </h1>
           <div className="role-line">
-            &gt; Pengembang Junior · <span id="rotator">{roles[roleIndex]}</span>
+            &gt; Junior Front-End Developer · <span id="rotator">{roles[roleIndex]}</span>
             <span style={{ color: 'var(--lime)' }}>_</span>
           </div>
           <p className="lead">
-            Saya membangun antarmuka yang <strong>bergerak, responsif, dan terasa hidup</strong>, dengan React, animasi GSAP, dan komponen bergaya React Bits. Masih awal dalam karier, proyek terbaru saya yang sudah live adalah <strong>NVA Studio</strong> — landing page produksi dengan hero 3D prosedural, pengambilan lead via Supabase, dan integrasi WhatsApp.
+            I build interfaces that <strong>move, respond, and feel alive</strong> — with React, GSAP animation, and React Bits-style components. Early in my career, and my latest live project is <strong>NVA Studio</strong>: a production landing page with a procedural 3D hero, Supabase lead capture, and WhatsApp integration.
           </p>
           <div className="btns">
-            <MagneticButton href="#projects">Lihat Proyek Saya ↓</MagneticButton>
-            <MagneticButton href="#about" variant="ghost">Tentang Saya</MagneticButton>
+            <MagneticButton href="#projects">View My Work ↓</MagneticButton>
+            <MagneticButton href="#about" variant="ghost">About Me</MagneticButton>
           </div>
           <div className="socials">
             <a className="soc" href="https://instagram.com/denyy.xt" target="_blank" rel="noreferrer noopener">
@@ -294,23 +294,23 @@ export default function App() {
               <b>
                 <span className="count" data-to="1">0</span>
               </b>
-              <span>Proyek real yang diluncurkan</span>
+              <span>Real projects shipped</span>
             </div>
             <div className="stat">
               <b>
                 <span className="count" data-to="7">0</span>+
               </b>
-              <span>Teknologi inti</span>
+              <span>Core technologies</span>
             </div>
             <div className="stat">
               <b>
                 <span className="count" data-to="2">0</span>
               </b>
-              <span>Platform dipublikasikan harian</span>
+              <span>Platforms published daily</span>
             </div>
             <div className="stat">
               <b>100%</b>
-              <span>Dibangun &amp; dijalankan sendiri, end-to-end</span>
+              <span>Built &amp; shipped end-to-end, solo</span>
             </div>
           </div>
         </header>
@@ -331,25 +331,25 @@ export default function App() {
       <div className="wrap">
         <section id="about">
           <SectionHeader
-            kicker="01 · Tentang"
-            title="Pengembang junior yang belajar dari praktik langsung."
+            kicker="01 · About"
+            title="A junior developer who learns by shipping."
           />
           <div className="about-grid" style={{ marginTop: '32px' }}>
             <div className="about-copy reveal">
               <p>
-                Halo, saya <strong>Deny Nurcahyanto</strong>, pengembang junior yang berfokus pada pengembangan front-end menggunakan <strong>React dan JavaScript</strong>. Saya peduli pada detail yang sering dilewatkan: animasi halus, responsivitas, dan antarmuka yang intuitif.
+                Halo, I'm <strong>Deny Nurcahyanto</strong>, a junior developer focused on front-end with <strong>React and JavaScript</strong>. I care about the details people skip: smooth motion, responsiveness, and interfaces that feel obvious.
               </p>
               <p>
-                Proyek saya bukan sekadar hasil tutorial. Karya live terbaru saya adalah <strong>NVA Studio</strong>, landing page produksi untuk studio digital & kreatif di Surakarta, lengkap dengan hero 3D prosedural, formulir kontak terintegrasi database Supabase, dan sistem identitas merek. Saya juga pernah membangun dasbor monitoring AI, otomatisasi alur publikasi video, dan materi kampanye untuk pilkades di Karanganyar.
+                My work isn't tutorial output. My latest live build is <strong>NVA Studio</strong> — a production landing page for a digital &amp; creative studio in Surakarta, with a procedural 3D hero, a Supabase-backed contact form, and a full brand identity.
               </p>
               <p>
-                Saat ini saya terus memperdalam fundamental React, teknik animasi interaktif dengan GSAP, dan dasar-dasar UI/UX agar bisa mewujudkan ide menjadi produk jadi secara mandiri.
+                Right now I'm going deeper into React fundamentals, interactive GSAP animation, and UI/UX basics so I can take an idea to a finished product on my own.
               </p>
               <ul className="checklist">
-                <li>Nyaman membangun UI berbasis komponen di React</li>
-                <li>Pola pikir mengutamakan animasi: GSAP + komponen interaktif</li>
-                <li>Bisa bekerja mandiri maupun kolaborasi berdampingan dengan mentor</li>
-                <li>Berbasis di Indonesia, terbuka untuk peluang kerja jarak jauh (remote)</li>
+                <li>Component-driven UI in React</li>
+                <li>Animation-first mindset: GSAP + interactive components</li>
+                <li>Works solo or alongside a mentor</li>
+                <li>Based in Indonesia, open to remote work</li>
               </ul>
             </div>
             <div className="codewin reveal" aria-label="Developer profile as a React component">
@@ -364,13 +364,13 @@ export default function App() {
               <pre>
 {`const developer = {
   name: 'Deny Nurcahyanto',
-  role: 'Pengembang Junior',
+  role: 'Junior Developer',
   stack: ['React', 'JavaScript', 'TypeScript', 'Node.js'],
-  currentlyLearning: 'Pola React tingkat lanjut',
+  currentlyLearning: 'Advanced React patterns',
   openToWork: true,
 };
 
-// siap kerja jika disediakan kopi ☕
+// ready to work if coffee is provided ☕
 export default developer;`}
               </pre>
             </div>
@@ -379,9 +379,9 @@ export default developer;`}
 
         <section id="skills" style={{ paddingTop: '24px' }}>
           <SectionHeader
-            kicker="02 · Keahlian"
-            title="Teknologi yang saya gunakan"
-            subtitle="Tingkat pemahaman jujur untuk profil junior, kuat di bidang yang sudah sering saya gunakan di proyek nyata."
+            kicker="02 · Skills"
+            title="Tech I use"
+            subtitle="Honest levels for a junior profile, strongest where I've shipped real work."
           />
           <div className="skills-grid">
             {skills.map((skill) => (
@@ -392,9 +392,9 @@ export default developer;`}
 
         <section id="projects" style={{ paddingTop: '24px' }}>
           <SectionHeader
-            kicker="03 · Proyek"
-            title="Karya terpilih"
-            subtitle="Satu produk nyata, dibangun menyeluruh: identitas visual, hero 3D, hingga sistem backend formulir kontak."
+            kicker="03 · Projects"
+            title="Selected work"
+            subtitle="One real product, built end to end: visual identity, 3D hero, and the form backend."
           />
           <div id="projectList">
             {projects.map((project) => (
@@ -404,7 +404,7 @@ export default developer;`}
         </section>
 
         <section id="stack" style={{ paddingTop: '24px' }}>
-          <SectionHeader kicker="04 · Alur Kerja" title="Alat bantu harian" />
+          <SectionHeader kicker="04 · Workflow" title="Daily toolkit" />
           <div className="stack reveal">
             {workflowTools.map((tool) => (
               <div className="chip" key={tool.name}>
@@ -417,10 +417,10 @@ export default developer;`}
 
         <section id="contact" style={{ paddingTop: '24px' }}>
           <div className="cta reveal">
-            <div className="kicker" style={{ justifyContent: 'center' }}>05 · Kontak</div>
-            <h2>Mari ciptakan sesuatu yang berkesan bersama.</h2>
+            <div className="kicker" style={{ justifyContent: 'center' }}>05 · Contact</div>
+            <h2>Let's build something memorable.</h2>
             <p>
-              Mencari pengembang web, proyek lepas, atau sekadar ingin diskusi seputar React dan animasi? Silakan hubungi saya lewat media sosial.
+              Looking for a web developer, a freelance project, or just want to talk React and animation? Reach me on social.
             </p>
             <div className="btns" style={{ justifyContent: 'center' }}>
               <MagneticButton href="https://instagram.com/denyy.xt" className="cta-btn">DM di Instagram ↗</MagneticButton>
@@ -435,7 +435,7 @@ export default developer;`}
         </section>
 
         <footer>
-          <span>© 2026 Deny Nurcahyanto · Pengembang Web</span>
+          <span>© 2026 Deny Nurcahyanto · Web Developer</span>
           <span className="mono">All rights reserved</span>
           <span>
             <a href="https://instagram.com/denyy.xt" target="_blank" rel="noreferrer noopener">Instagram</a> · <a href="https://github.com/denynurcahyanto1" target="_blank" rel="noreferrer noopener">GitHub</a>
